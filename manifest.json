@@ -1,0 +1,16 @@
+{
+	"manifest_version": 3,
+	"name": "MAL Pal",
+	"description": "Your Pal on MAL that gives you more helpful info!",
+	"version": "0.2",
+	"action": {
+	  "default_popup": "popup/popup.html",
+	  "default_icon": "popup/icon.png"
+	},
+	"content_scripts": [
+		{
+			"js": ["scripts/profile.js"],
+			"matches": ["https://myanimelist.net/profile/*"]
+		}
+	]
+  }
