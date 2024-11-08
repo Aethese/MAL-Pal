@@ -1,17 +1,30 @@
-const days = document.querySelector("#statistics > div:nth-child(2) > div.stats.anime > div.stat-score.di-t.w100.pt8 > div.di-tc.al.pl8.fs12.fw-b");
+const daysAnime = document.querySelector("#statistics > div:nth-child(2) > div.stats.anime > div.stat-score.di-t.w100.pt8 > div.di-tc.al.pl8.fs12.fw-b");
+const daysManga = document.querySelector("#statistics > div:nth-child(3) > div.stats.manga > div.stat-score.di-t.w100.pt8.mb8 > div.di-tc.al.pl8.fs12.fw-b");
 const totalEntries = document.querySelector("#statistics > div:nth-child(2) > div.stats.anime > div.mt12.ml8.mr8.clearfix > ul.stats-data.fl-r > li:nth-child(1) > span.di-ib.fl-r");
 
-if (days)
+if (daysAnime)
 {
 	// add hours spent watching next to "Days:" text
-	let daysText = days.childNodes[1].nodeValue;
+
+	// ANIME:
+	let daysText = daysAnime.childNodes[1].nodeValue;
 	let hoursNum = Number(daysText);
 	let hours = (hoursNum * 24).toFixed(1);
 	let formattedHours = parseFloat(hours).toLocaleString(
 		undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 }
 	);
 
-	days.childNodes[1].nodeValue = daysText + " ("+ formattedHours + " Hours)";
+	daysAnime.childNodes[1].nodeValue = daysText + " ("+ formattedHours + " Hours)";
+
+	// MANGA:
+	let mangaDaysText = daysManga.childNodes[1].nodeValue;
+	let mangaHoursNum = Number(mangaDaysText);
+	let mangaHours = (mangaHoursNum * 24).toFixed(1);
+	let mangaFormattedHours = parseFloat(mangaHours).toLocaleString(
+		undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 }
+	);
+
+	daysManga.childNodes[1].nodeValue = mangaDaysText + " ("+ mangaFormattedHours + " Hours)";
 	console.log("[MAL Pal] Modified days text");
 } else
 {
@@ -30,13 +43,14 @@ if (totalEntries)
 
 	let totalEntriesNum = parseInt((totalEntries.textContent).replace(/,/g, ""), 10);
 
-	for (let i = 0; i < categories.length; i++)
-	{
-		let amount = parseInt((categories[i].textContent).replace(/,/g, ""), 10);
-		let percent = ((amount / totalEntriesNum) * 100).toFixed(1);
-		let previousText = categories[i].textContent;
-		categories[i].textContent = previousText + " (" + percent + "%)";
-	}
+	// DISABLED FOR NOW
+	// for (let i = 0; i < categories.length; i++)
+	// {
+	// 	let amount = parseInt((categories[i].textContent).replace(/,/g, ""), 10);
+	// 	let percent = ((amount / totalEntriesNum) * 100).toFixed(1);
+	// 	let previousText = categories[i].textContent;
+	// 	categories[i].textContent = previousText + " (" + percent + "%)";
+	// }
 	console.log("[MAL Pal] Modified total entries text");
 } else
 {
