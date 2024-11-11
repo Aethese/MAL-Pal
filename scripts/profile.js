@@ -4,12 +4,13 @@ const totalEntries = document.querySelector("#statistics > div:nth-child(2) > di
 
 function strToInt(string)
 {
-	// take a number, like 1,042 and return 1042 in int form
+	// take a number that contains a comma (like 1,042) and return it (1042) in int form
 	return parseInt((string).replace(/,/g, ""), 10);
 }
 
 function formatNum(number)
 {
+	// undefined = use local language
 	return parseFloat(number).toLocaleString(
 		undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 }
 	);
@@ -21,7 +22,7 @@ if (daysAnime)
 
 	// ANIME:
 	let daysText = daysAnime.childNodes[1].nodeValue;
-	let hoursNum = strToInt(daysText);
+	let hoursNum = Number(daysText);
 	let hours = (hoursNum * 24).toFixed(1);
 	let formattedHours = formatNum(hours);
 
@@ -29,7 +30,7 @@ if (daysAnime)
 
 	// MANGA:
 	let mangaDaysText = daysManga.childNodes[1].nodeValue;
-	let mangaHoursNum = strToInt(mangaDaysText);
+	let mangaHoursNum = Number(mangaDaysText);
 	let mangaHours = (mangaHoursNum * 24).toFixed(1);
 	let mangaFormattedHours = formatNum(mangaHours);
 
