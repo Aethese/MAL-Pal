@@ -16,10 +16,8 @@ function formatNum(number)
 	);
 }
 
-if (daysAnime)
+function addHours()
 {
-	// add hours spent watching next to "Days:" text
-
 	// ANIME:
 	let daysText = daysAnime.childNodes[1].nodeValue;
 	let hoursNum = Number(daysText);
@@ -35,16 +33,10 @@ if (daysAnime)
 	let mangaFormattedHours = formatNum(mangaHours);
 
 	daysManga.childNodes[1].nodeValue = mangaDaysText + " ("+ mangaFormattedHours + " Hours)";
-	console.log("[MAL Pal] Modified days text");
-} else
-{
-	console.warn("Days not found");
 }
 
-if (totalEntries)
+function addCategoryPercents()
 {
-	// add percent a category makes up of the total entries
-
 	const watching = document.querySelector("#statistics > div:nth-child(2) > div.stats.anime > div.mt12.ml8.mr8.clearfix > ul.stats-status.fl-l > li:nth-child(1) > span");
 	const completed = document.querySelector("#statistics > div:nth-child(2) > div.stats.anime > div.mt12.ml8.mr8.clearfix > ul.stats-status.fl-l > li:nth-child(2) > span");
 	const onHold = document.querySelector("#statistics > div:nth-child(2) > div.stats.anime > div.mt12.ml8.mr8.clearfix > ul.stats-status.fl-l > li:nth-child(3) > span");
@@ -56,13 +48,42 @@ if (totalEntries)
 
 	for (let i = 0; i < categories.length; i++)
 	{
+		// get num in category, divide num by total entries and format in percent, then display percent
 		let amount = strToInt(categories[i].textContent);
 		let percent = ((amount / totalEntriesNum) * 100).toFixed(1);
 		let previousText = categories[i].textContent;
 		categories[i].textContent = previousText + " (" + percent + "%)";
 	}
-	console.log("[MAL Pal] Modified total entries text");
-} else
+}
+
+
+
+if (daysAnime) // add hours spent watching next to "Days:" text
+{
+	chrome.storage.local.get(['showHours'], function(result) {
+		if (result.showHours)
+		{
+			addHours();
+			console.log("[MAL Pal] Modified days text");
+		}
+	});
+}
+else
+{
+	console.warn("Days not found");
+}
+
+if (totalEntries) // add percent a category makes up of the total entries
+{
+	chrome.storage.local.get(['category'], function(result) {
+		if (result.category)
+		{
+			addCategoryPercents();
+			console.log("[MAL Pal] Modified total entries text");
+		}
+	});
+}
+else
 {
 	console.warn("Total entries not found");
 }
