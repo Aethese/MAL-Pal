@@ -1,6 +1,9 @@
 body {
+	/*
+	update height by +50 for each new setting
+	*/
 	min-width: 350px;
-	min-height: 150px;
+	min-height: 200px;
 	position: relative;
 	vertical-align:middle;
 }

@@ -2,7 +2,7 @@
 	"manifest_version": 3,
 	"name": "MAL Pal",
 	"description": "Your Pal on MAL that gives you more helpful info!",
-	"version": "0.3",
+	"version": "0.4",
 	"permissions": [
 		"storage"
 	],
@@ -14,6 +14,10 @@
 		{
 			"js": ["scripts/profile.js"],
 			"matches": ["https://myanimelist.net/profile/*"]
+		},
+		{
+			"js": ["scripts/pages.js"],
+			"matches": ["https://myanimelist.net/anime/*", "https://myanimelist.net/manga/*"]
 		}
 	]
   }
