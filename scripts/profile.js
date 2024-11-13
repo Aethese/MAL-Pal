@@ -2,6 +2,7 @@ const daysAnime = document.querySelector('#statistics > div:nth-child(2) > div.s
 const daysManga = document.querySelector('#statistics > div:nth-child(3) > div.stats.manga > div.stat-score.di-t.w100.pt8.mb8 > div.di-tc.al.pl8.fs12.fw-b');
 const totalEntries = document.querySelector('#statistics > div:nth-child(2) > div.stats.anime > div.mt12.ml8.mr8.clearfix > ul.stats-data.fl-r > li:nth-child(1) > span.di-ib.fl-r');
 
+
 function strToInt(string)
 {
 	// take a number that contains a comma (like 1,042) and return it (1042) in int form
@@ -15,6 +16,7 @@ function formatNum(number)
 		undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 }
 	);
 }
+
 
 function addHours()
 {

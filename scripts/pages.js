@@ -15,6 +15,7 @@ function getJSTDate()
 	return undefined;
 }
 
+
 // i hate dates in js
 function getNextDateForDay(day)
 {
@@ -34,6 +35,7 @@ function getNextDateForDay(day)
 	nextDate.setDate(today.getDate() + daysToAdd);
 	return nextDate;
 }
+
 
 function translateDate(JSTDate)
 {
@@ -59,6 +61,7 @@ function translateDate(JSTDate)
 	return ` ${localDayOfWeek}s at ${localTime} (Local)`;
 }
 
+
 function changeTime()
 {
 	const dateInfo = getJSTDate(); // [JSTDate, path]
@@ -73,6 +76,8 @@ function changeTime()
 		console.log('[MAL Pal: Pages] Couldn\'t find scheduled date, assuming there is none');
 	}
 }
+
+
 
 chrome.storage.local.get(['showLocalTime'], function(result) {
 	if (result.showLocalTime)
