@@ -66,6 +66,7 @@ function changeTime()
 	{
 		let newText = translateDate(dateInfo[0]);
 		dateInfo[1].childNodes[2].nodeValue = `${newText}`;
+		console.log('[MAL Pal: Pages] Updated broadcast time');
 	}
 	else
 	{
@@ -77,6 +78,5 @@ chrome.storage.local.get(['showLocalTime'], function(result) {
 	if (result.showLocalTime)
 	{
 		changeTime();
-		console.log('[MAL Pal: Pages] Updated broadcast time');
 	}
 });

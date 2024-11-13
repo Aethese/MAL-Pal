@@ -20,7 +20,7 @@ function addHours()
 {
 	// ANIME:
 	let daysText = daysAnime.childNodes[1].nodeValue;
-	let hoursNum = Number(daysText);
+	let hoursNum = Number(daysText.replace(/,/g, ''));
 	let hours = (hoursNum * 24).toFixed(1);
 	let formattedHours = formatNum(hours);
 
@@ -28,7 +28,7 @@ function addHours()
 
 	// MANGA:
 	let mangaDaysText = daysManga.childNodes[1].nodeValue;
-	let mangaHoursNum = Number(mangaDaysText);
+	let mangaHoursNum = Number(mangaDaysText.replace(/,/g, ''));
 	let mangaHours = (mangaHoursNum * 24).toFixed(1);
 	let mangaFormattedHours = formatNum(mangaHours);
 
