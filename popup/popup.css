@@ -8,8 +8,16 @@ body {
 	vertical-align:middle;
 }
 
+h1 {
+	text-align: center;
+}
+
 h3 {
 	vertical-align: middle;
+}
+
+p {
+	text-align: center;
 }
 
 .switch {
