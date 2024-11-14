@@ -4,6 +4,7 @@ const totalEntriesAnime = document.querySelector('#statistics > div:nth-child(2)
 const totalEntriesManga = document.querySelector('#statistics > div:nth-child(3) > div.stats.manga > div.mt12.ml8.mr8.clearfix > ul.stats-data.fl-r > li:nth-child(1) > span.di-ib.fl-r');
 
 
+/* Helper Functions */
 function strToInt(string)
 {
 	// take a number that contains a comma (like 1,042) and return it (1042) in int form
@@ -18,7 +19,7 @@ function formatNum(number)
 	);
 }
 
-
+/* Add Hours Functions */
 function addHours()
 {
 	// ANIME:
@@ -38,6 +39,7 @@ function addHours()
 	daysManga.childNodes[1].nodeValue = `${mangaDaysText} (${mangaFormattedHours} Hours)`;
 }
 
+/* Category Functions */
 function categoryAnime()
 {
 	const watching = document.querySelector('#statistics > div:nth-child(2) > div.stats.anime > div.mt12.ml8.mr8.clearfix > ul.stats-status.fl-l > li:nth-child(1) > span');
@@ -86,7 +88,7 @@ function addCategoryPercents()
 }
 
 
-
+/* Checks and Handlers for changing data */
 if (daysAnime) // add hours spent watching next to "Days:" text
 {
 	chrome.storage.local.get(['showHours'], function(result) {
@@ -96,10 +98,6 @@ if (daysAnime) // add hours spent watching next to "Days:" text
 			console.log('[MAL Pal: Profile] Modified days text');
 		}
 	});
-}
-else
-{
-	console.warn('[MAL Pal: Profile] Days not found');
 }
 
 if (totalEntriesAnime) // add percent a category makes up of the total entries
@@ -111,8 +109,4 @@ if (totalEntriesAnime) // add percent a category makes up of the total entries
 			console.log('[MAL Pal: Profile] Modified total entries text');
 		}
 	});
-}
-else
-{
-	console.warn('[MAL Pal: Profile] Total entries not found');
 }

@@ -1,5 +1,6 @@
 // changes that will be made to anime/manga pages
 
+/* Helper Functions */
 function getJSTDate()
 {
 	const spaceitItems = document.body.getElementsByClassName('spaceit_pad');
@@ -36,7 +37,7 @@ function getNextDateForDay(day)
 	return nextDate;
 }
 
-
+/* Translate Date into user's local time */
 function translateDate(JSTDate)
 {
 	let day = JSTDate.match(/^\w+/)[0];
@@ -61,7 +62,7 @@ function translateDate(JSTDate)
 	return ` ${localDayOfWeek}s at ${localTime} (Local)`;
 }
 
-
+/* Checks and Changing on screen data */
 function changeTime()
 {
 	const dateInfo = getJSTDate(); // [JSTDate, path]

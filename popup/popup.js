@@ -1,10 +1,10 @@
-let showHoursSwitch = document.getElementById('hoursSwitch');
-let categorySwitch = document.getElementById('categorySwitch');
-let timeSwitch = document.getElementById('timeSwitch');
-let versionText = document.getElementById('versionText');
+const showHoursSwitch = document.getElementById('hoursSwitch');
+const categorySwitch = document.getElementById('categorySwitch');
+const timeSwitch = document.getElementById('timeSwitch');
+const versionText = document.getElementById('versionText');
 
 
-// show the setting that's saved for the options
+/* Display user's saved data on switches */
 chrome.storage.local.get(['showHours'], function(result) {
 	showHoursSwitch.checked = result.showHours;
 });
@@ -16,11 +16,11 @@ chrome.storage.local.get(['showLocalTime'], function(result) {
 });
 
 
-// set version text
+/* Set version text */
 versionText.innerHTML = `<i>v${chrome.runtime.getManifest().version}</i>`;
 
 
-// event listeners
+/* Event Listeners */
 showHoursSwitch.addEventListener('change', function() {
 	let showHours = this.checked; 
 	chrome.storage.local.set({'showHours': showHours}, function() {
