@@ -8,8 +8,17 @@ body {
 	vertical-align:middle;
 }
 
+header {
+	display: flex;
+	justify-content: center;
+}
+
 h1 {
 	text-align: center;
+	padding: 5px;
+	border: 0;
+	margin: 0;
+	align-self: center;
 }
 
 h3 {
