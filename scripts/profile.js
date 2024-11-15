@@ -11,11 +11,14 @@ function strToInt(string)
 	return parseInt((string).replace(/,/g, ''), 10);
 }
 
-function formatNum(number)
+function formatNum(number, decimalPlace)
 {
+	// formats a number to normal text. ex: 1042 to 1,042
+	// decimalPlace: int = how many places past decimal should be used
+
 	// undefined = use local language
 	return parseFloat(number).toLocaleString(
-		undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 }
+		undefined, { minimumFractionDigits: decimalPlace, maximumFractionDigits: decimalPlace }
 	);
 }
 
@@ -26,7 +29,7 @@ function addHours()
 	let daysText = daysAnime.childNodes[1].nodeValue;
 	let hoursNum = Number(daysText.replace(/,/g, ''));
 	let hours = (hoursNum * 24).toFixed(1);
-	let formattedHours = formatNum(hours);
+	let formattedHours = formatNum(hours, 1);
 
 	daysAnime.childNodes[1].nodeValue = `${daysText} (${formattedHours} Hours)`;
 
@@ -34,57 +37,42 @@ function addHours()
 	let mangaDaysText = daysManga.childNodes[1].nodeValue;
 	let mangaHoursNum = Number(mangaDaysText.replace(/,/g, ''));
 	let mangaHours = (mangaHoursNum * 24).toFixed(1);
-	let mangaFormattedHours = formatNum(mangaHours);
+	let mangaFormattedHours = formatNum(mangaHours, 1);
 
 	daysManga.childNodes[1].nodeValue = `${mangaDaysText} (${mangaFormattedHours} Hours)`;
 }
 
 /* Category Functions */
-function categoryAnime()
+function addPercent(subject, nth)
 {
-	const watching = document.querySelector('#statistics > div:nth-child(2) > div.stats.anime > div.mt12.ml8.mr8.clearfix > ul.stats-status.fl-l > li:nth-child(1) > span');
-	const completed = document.querySelector('#statistics > div:nth-child(2) > div.stats.anime > div.mt12.ml8.mr8.clearfix > ul.stats-status.fl-l > li:nth-child(2) > span');
-	const onHold = document.querySelector('#statistics > div:nth-child(2) > div.stats.anime > div.mt12.ml8.mr8.clearfix > ul.stats-status.fl-l > li:nth-child(3) > span');
-	const dropped = document.querySelector('#statistics > div:nth-child(2) > div.stats.anime > div.mt12.ml8.mr8.clearfix > ul.stats-status.fl-l > li:nth-child(4) > span');
-	const ptw = document.querySelector('#statistics > div:nth-child(2) > div.stats.anime > div.mt12.ml8.mr8.clearfix > ul.stats-status.fl-l > li:nth-child(5) > span');
+	// subject = anime, or manga
+	// nth = 2 for anime, 3 for manga
+
+	const watching = document.querySelector(`#statistics > div:nth-child(${nth}) > div.stats.${subject} > div.mt12.ml8.mr8.clearfix > ul.stats-status.fl-l > li:nth-child(1) > span`);
+	const completed = document.querySelector(`#statistics > div:nth-child(${nth}) > div.stats.${subject} > div.mt12.ml8.mr8.clearfix > ul.stats-status.fl-l > li:nth-child(2) > span`);
+	const onHold = document.querySelector(`#statistics > div:nth-child(${nth}) > div.stats.${subject} > div.mt12.ml8.mr8.clearfix > ul.stats-status.fl-l > li:nth-child(3) > span`);
+	const dropped = document.querySelector(`#statistics > div:nth-child(${nth}) > div.stats.${subject} > div.mt12.ml8.mr8.clearfix > ul.stats-status.fl-l > li:nth-child(4) > span`);
+	const ptw = document.querySelector(`#statistics > div:nth-child(${nth}) > div.stats.${subject} > div.mt12.ml8.mr8.clearfix > ul.stats-status.fl-l > li:nth-child(5) > span`);
 	const categories = [watching, completed, onHold, dropped, ptw];
 
-	let totalEntriesNum = strToInt(totalEntriesAnime.textContent);
+	let totalEntries = totalEntriesAnime;
+	if (nth == 3) { totalEntries = totalEntriesManga; }
+
+	let totalEntriesNum = strToInt(totalEntries.textContent);
 
 	for (let i = 0; i < categories.length; i++)
 	{
 		// get num in category, divide num by total entries and format in percent, then display percent
 		let amount = strToInt(categories[i].textContent);
 		let percent = ((amount / totalEntriesNum) * 100).toFixed(1);
-		let previousText = categories[i].textContent;
-		categories[i].textContent = `${previousText} (${percent}%)`;
-	}
-}
-
-function categoryManga()
-{
-	const reading = document.querySelector('#statistics > div:nth-child(3) > div.stats.manga > div.mt12.ml8.mr8.clearfix > ul.stats-status.fl-l > li:nth-child(1) > span');
-	const completed = document.querySelector('#statistics > div:nth-child(3) > div.stats.manga > div.mt12.ml8.mr8.clearfix > ul.stats-status.fl-l > li:nth-child(2) > span')
-	const onHold = document.querySelector('#statistics > div:nth-child(3) > div.stats.manga > div.mt12.ml8.mr8.clearfix > ul.stats-status.fl-l > li:nth-child(3) > span');
-	const dropped = document.querySelector('#statistics > div:nth-child(3) > div.stats.manga > div.mt12.ml8.mr8.clearfix > ul.stats-status.fl-l > li:nth-child(4) > span');
-	const ptr = document.querySelector('#statistics > div:nth-child(3) > div.stats.manga > div.mt12.ml8.mr8.clearfix > ul.stats-status.fl-l > li:nth-child(5) > span');
-	const categories = [reading, completed, onHold, dropped, ptr];
-
-	let totalEntriesNum = strToInt(totalEntriesManga.textContent);
-
-	for (let i = 0; i < categories.length; i++)
-	{
-		let amount = strToInt(categories[i].textContent);
-		let percent = ((amount / totalEntriesNum) * 100).toFixed(1);
-		let previousText = categories[i].textContent;
-		categories[i].textContent = `${previousText} (${percent}%)`;
+		categories[i].title = `${percent}% of ${formatNum(totalEntriesNum, 0)}`;
 	}
 }
 
 function addCategoryPercents()
 {
-	categoryAnime();
-	categoryManga();
+	addPercent('anime', 2);
+	addPercent('manga', 3);
 }
 
 
