@@ -1,4 +1,4 @@
-# <img src="icons/128.png" width="50" height="50" alt="MAL Pal Logo"> MAL Pal
+# <img src="icons/128.png" width="80" height="80" alt="MAL Pal Logo"> MAL Pal
 **A Chromium (and soon to be Firefox) extension to enhance your MyAnimeList experience.**
 
 MAL Pal adds new features to MyAnimeList to make browsing easier and more convenient!
