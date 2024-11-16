@@ -137,7 +137,7 @@ function changeTime()
 function addWatchLength()
 {
 	const episodeCount = document.querySelector('#curEps');
-	if (episodeCount == '?')
+	if (episodeCount.textContent == '?')
 	{
 		console.log('[MAL Pal: Pages] Anime not finished, so won\'t get duration');
 		return;
