@@ -1,6 +1,8 @@
 const showHoursSwitch = document.getElementById('hoursSwitch');
 const categorySwitch = document.getElementById('categorySwitch');
 const timeSwitch = document.getElementById('timeSwitch');
+const watchSwitch = document.getElementById('watchSwitch');
+
 const versionText = document.getElementById('versionText');
 
 
@@ -13,6 +15,9 @@ chrome.storage.local.get(['category'], function(result) {
 });
 chrome.storage.local.get(['showLocalTime'], function(result) {
 	timeSwitch.checked = result.showLocalTime;
+});
+chrome.storage.local.get(['showWatchLength'], function(result) {
+	watchSwitch.checked = result.showWatchLength;
 });
 
 
@@ -38,6 +43,13 @@ categorySwitch.addEventListener('change', function() {
 timeSwitch.addEventListener('change', function() {
 	let timeChecked = this.checked; 
 	chrome.storage.local.set({'showLocalTime': timeChecked}, function() {
+		console.log(`[MAL Pal: Popup] Updated settings to ${timeChecked} for show local time`);
+	});
+});
+
+watchSwitch.addEventListener('change', function() {
+	let timeChecked = this.checked; 
+	chrome.storage.local.set({'showWatchLength': timeChecked}, function() {
 		console.log(`[MAL Pal: Popup] Updated settings to ${timeChecked} for show local time`);
 	});
 });
