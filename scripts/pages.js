@@ -136,8 +136,13 @@ function changeTime()
 
 function addWatchLength()
 {
-	// first check if it's an episodic release. aka no movie
 	const episodeCount = document.querySelector('#curEps');
+	if (episodeCount == '?')
+	{
+		console.log('[MAL Pal: Pages] Anime not finished, so won\'t get duration');
+		return;
+	}
+
 	const durationInfo = getLeftPanelInfo('per ep.'); // [duration, path]
 	if (durationInfo)
 	{
