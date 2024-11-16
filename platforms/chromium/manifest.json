@@ -2,6 +2,7 @@
 	"manifest_version": 3,
 	"name": "MAL Pal",
 	"description": "Your Pal on MAL that gives you more helpful info!",
+	"author": "Aethese",
 	"version": "0.6.1",
 	"permissions": [
 		"storage"
