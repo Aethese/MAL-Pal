@@ -1,5 +1,5 @@
 # <div align="center"><img src="icons/128.png" width="80" height="80" alt="MAL Pal Logo" style="vertical-align: bottom;"> MAL Pal</div>
-**A Chromium (and soon to be Firefox) extension to enhance your MyAnimeList experience.**
+**A Chromium and Firefox extension to enhance your MyAnimeList experience.**
 
 MAL Pal adds new features to MyAnimeList to make browsing easier and more convenient!
 
@@ -12,7 +12,7 @@ MAL Pal adds new features to MyAnimeList to make browsing easier and more conven
 ## Installation
 
 #### Option 1: Install from Chrome Web Store or from Firefox Add-ons
-1. Download the extension from the Chrome Web Store (page not set up yet) or from Firefox Add-ons (also not set up yet)
+1. Download the extension from the Chrome Web Store (page not set up yet) or from [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/mal-pal/)
 2. Click "Add to Chrome" or "Add to Firefox"
 3. Enjoy your new enhanced MAL experience!
 
