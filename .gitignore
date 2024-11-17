@@ -1,3 +1,5 @@
 .DS_Store
 MAL Pal chromium/
 *.zip
+# i unhide some files starting with .
+.vscode/

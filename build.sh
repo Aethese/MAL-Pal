@@ -27,7 +27,18 @@ create_folder () {
 	cp -r "$current_dir"/. "../$new_folder"
 
 	mv "../$new_folder" "$current_dir" # move folder out of temp location, and back into working dir
+
+	# move needed manifest to root, and remove unnecessary files
 	mv "$new_folder/platforms/$1/manifest.json" "$new_folder"
+
+	echo "Removing unnecessary files..."
+	rm "$new_folder/build.sh"
+	rm "$new_folder/MAL Pal firefox.zip"
+	rm -rf "$new_folder/MAL Pal chromium"
+	rm -rf "$new_folder/.git"
+	rm -rf "$new_folder/.vscode"
+	find "$new_folder" -name ".*" -type f -print0| xargs -0 \rm -rf # delete files starting with .
+	echo "Removed unnecessary files!"
 
 	if [[ $2 == 1 ]]; then
 		echo "Zipping folder..."
