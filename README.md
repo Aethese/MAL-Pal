@@ -19,8 +19,8 @@ MAL Pal adds new features to MyAnimeList to make browsing easier and more conven
 #### Option 2: Installing from Source Code
 1. Download the project as a ZIP, and unzip the project files in any location you desire
 2. Next steps vary between browser options
-	* For Chrome: Move the manifest file under `platform/chromium/manifest.json` to the root folder. Then go to your browser's extension page and enable "Developer Mode". Finally select the "Load Unpacked" button and choose the project folder
-	* For Firefox (Note: you can only temporary save the extension at this time): Move the manifest file under `platform/firefox/manifest.json` to the root folder. Next zip the CONTENTS, not the parent folder. On the extensions page, click the settings icon and select "Debug Add-ons". Finally choose "Load Temporary Add-on" and select your zipped folder to load TEMPORARILY
+	* For Chrome: Run `build.sh` and build for chromium and use that folder, or move the manifest file under `platform/chromium/manifest.json` to the root folder. Then go to your browser's extension page and enable "Developer Mode". Finally select the "Load Unpacked" button and choose the project folder
+	* For Firefox **(Note: you can only temporary save the extension at this time)**: Run `build.sh` and build for firefox and use that zip file, or move the manifest file under `platform/firefox/manifest.json` to the root folder. (*If you didn't build project, then next zip the CONTENTS, not the parent folder, to a zip file.*) On the extensions page, click the settings icon and select "Debug Add-ons". Finally choose "Load Temporary Add-on" and select your zipped folder to load TEMPORARILY
 4. Enjoy your new enhanced MAL experience!
 
 ## Usage
