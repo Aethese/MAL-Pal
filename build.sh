@@ -17,9 +17,10 @@ create_folder () {
 	current_dir=$(pwd)
 	new_folder="MAL Pal $1"
 
+	# zip doesn't need to be removed, it just updates lol
 	if [ -d "$new_folder" ]; then
-		echo "$new_folder folder already exists. Canceling operation"
-		exit
+		echo "Removed old build folder"
+		rm -rf "$new_folder"
 	fi
 
 	mkdir "../$new_folder" # temp create folder outside of working dir to combat recursion issues (experienced first hand lmao)
