@@ -13,7 +13,7 @@ read choice
 
 create () {
 	# $1 = browser name
-	# $2 = 1 if we want to zip folder instead
+	# $2 = 1 if we want to make a zip file
 	echo "Building project for $1..."
 	current_dir=$(pwd)
 	new_folder="MAL Pal $1"
@@ -51,6 +51,11 @@ create () {
 		cd $current_dir
 
 		echo "Finished zipping folder!"
+
+		# remove folder if building for firefox, since the folder isn't needed
+		if [[ $1 == "firefox" ]]; then
+			rm -rf "$new_folder"
+		fi
 
 		echo "Created new ZIP File called 'MAL PAL $1.zip' at '$new_folder'"
 		echo
