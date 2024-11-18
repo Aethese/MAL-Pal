@@ -47,8 +47,7 @@ create () {
 		echo "Zipping folder..."
 
 		# when updating a zip file, it doesn't remove files so just delete zip file
-		rm "MAL Pal firefox.zip"
-		rm "MAL Pal chromium.zip"
+		rm "MAL Pal $1.zip"
 
 		# copy all, and ONLY, contents within new_folder
 		cd "$new_folder"
