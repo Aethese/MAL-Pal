@@ -2,6 +2,7 @@ const showHoursSwitch = document.getElementById('hoursSwitch');
 const categorySwitch = document.getElementById('categorySwitch');
 const timeSwitch = document.getElementById('timeSwitch');
 const watchSwitch = document.getElementById('watchSwitch');
+const historyHourSwitch = document.getElementById('showHistoryHours');
 
 const versionText = document.getElementById('versionText');
 
@@ -19,6 +20,9 @@ chrome.storage.local.get(['showLocalTime'], function(result) {
 chrome.storage.local.get(['showWatchLength'], function(result) {
 	watchSwitch.checked = result.showWatchLength;
 });
+chrome.storage.local.get(['showHoursInHistory'], function(result) {
+	historyHourSwitch.checked = result.showHoursInHistory;
+});
 
 
 /* Set version text */
@@ -27,29 +31,36 @@ versionText.innerHTML = `<i>v${chrome.runtime.getManifest().version}</i>`;
 
 /* Event Listeners */
 showHoursSwitch.addEventListener('change', function() {
-	let showHours = this.checked; 
+	let showHours = this.checked;
 	chrome.storage.local.set({'showHours': showHours}, function() {
 		console.log(`[MAL Pal: Popup] Updated settings to ${showHours} for showing hours`);
 	});
 });
 
 categorySwitch.addEventListener('change', function() {
-	let categoryChecked = this.checked; 
+	let categoryChecked = this.checked;
 	chrome.storage.local.set({'category': categoryChecked}, function() {
 		console.log(`[MAL Pal: Popup] Updated settings to ${categoryChecked} for category numbers`);
 	});
 });
 
 timeSwitch.addEventListener('change', function() {
-	let timeChecked = this.checked; 
+	let timeChecked = this.checked;
 	chrome.storage.local.set({'showLocalTime': timeChecked}, function() {
 		console.log(`[MAL Pal: Popup] Updated settings to ${timeChecked} for show local time`);
 	});
 });
 
 watchSwitch.addEventListener('change', function() {
-	let timeChecked = this.checked; 
+	let timeChecked = this.checked;
 	chrome.storage.local.set({'showWatchLength': timeChecked}, function() {
-		console.log(`[MAL Pal: Popup] Updated settings to ${timeChecked} for show local time`);
+		console.log(`[MAL Pal: Popup] Updated settings to ${timeChecked} for view watch length`);
+	});
+});
+
+historyHourSwitch.addEventListener('change', function() {
+	let timeChecked = this.checked;
+	chrome.storage.local.set({'showHoursInHistory': timeChecked}, function() {
+		console.log(`[MAL Pal: Popup] Updated settings to ${timeChecked} for hours in history`);
 	});
 });

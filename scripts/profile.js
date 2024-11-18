@@ -1,8 +1,10 @@
 const daysAnime = document.querySelector('#statistics > div:nth-child(2) > div.stats.anime > div.stat-score.di-t.w100.pt8 > div.di-tc.al.pl8.fs12.fw-b');
 const daysManga = document.querySelector('#statistics > div:nth-child(3) > div.stats.manga > div.stat-score.di-t.w100.pt8.mb8 > div.di-tc.al.pl8.fs12.fw-b');
+
 const totalEntriesAnime = document.querySelector('#statistics > div:nth-child(2) > div.stats.anime > div.mt12.ml8.mr8.clearfix > ul.stats-data.fl-r > li:nth-child(1) > span.di-ib.fl-r');
 const totalEntriesManga = document.querySelector('#statistics > div:nth-child(3) > div.stats.manga > div.mt12.ml8.mr8.clearfix > ul.stats-data.fl-r > li:nth-child(1) > span.di-ib.fl-r');
 
+const historyTab = document.querySelector('#content > div.history_content_wrapper');
 
 /* Helper Functions */
 function strToInt(string)
@@ -75,6 +77,27 @@ function addCategoryPercents()
 	addPercent('manga', 3);
 }
 
+/* Add hours to history page */
+function addHoursToHeaders()
+{
+	// assume that the average episode is 23 min long
+
+	const headerItems = document.body.getElementsByClassName('normal_header');
+
+	for (let i=0; i < headerItems.length; i++)
+	{
+		const valueLocation = headerItems[i].querySelector('small');
+		const valueOGText = valueLocation.textContent;
+		const value = Number( valueLocation.textContent.replace(/[()]/g, '') );
+
+		const minLength = value * 23; // assumed ep length
+		const totalHours = minToHours(minLength); // scripts/utilities.js
+
+		valueLocation.title = 'Assuming the average episode length is 23 minutes';
+		valueLocation.textContent = `${valueOGText} ~${totalHours}`;
+	}
+}
+
 
 /* Checks and Handlers for changing data */
 if (daysAnime) // add hours spent watching next to "Days:" text
@@ -95,6 +118,17 @@ if (totalEntriesAnime) // add percent a category makes up of the total entries
 		{
 			addCategoryPercents();
 			console.log('[MAL Pal: Profile] Modified total entries text');
+		}
+	});
+}
+
+if (historyTab)
+{
+	chrome.storage.local.get(['showHoursInHistory'], function(result) {
+		if (result.showHoursInHistory)
+		{
+			addHoursToHeaders();
+			console.log('[MAL Pal: Profile] Added hours to history');
 		}
 	});
 }

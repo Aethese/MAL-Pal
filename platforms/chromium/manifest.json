@@ -1,9 +1,9 @@
 {
 	"manifest_version": 3,
 	"name": "MAL Pal",
-	"description": "Your Pal on MAL that gives you more helpful info!",
+	"description": "MAL Pal adds new features to MyAnimeList to make browsing easier and more convenient!",
 	"author": "Aethese",
-	"version": "0.6.1",
+	"version": "0.7",
 	"permissions": [
 		"storage"
 	],
@@ -18,11 +18,11 @@
 	},
 	"content_scripts": [
 		{
-			"js": ["scripts/profile.js"],
-			"matches": ["https://myanimelist.net/profile/*"]
+			"js": ["scripts/profile.js", "scripts/utilities.js"],
+			"matches": ["https://myanimelist.net/profile/*", "https://myanimelist.net/history/*"]
 		},
 		{
-			"js": ["scripts/pages.js"],
+			"js": ["scripts/pages.js", "scripts/utilities.js"],
 			"matches": ["https://myanimelist.net/anime/*", "https://myanimelist.net/manga/*"]
 		}
 	]
