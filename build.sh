@@ -39,6 +39,8 @@ create () {
 	rm -rf "$new_folder/MAL Pal chromium"
 	rm -rf "$new_folder/.git"
 	rm -rf "$new_folder/.vscode"
+	# remove platforms folder because chrome hates multiple manifest files lol
+	rm -rf "$new_sfolder/platforms"
 	find "$new_folder" -name ".*" -type f -print0| xargs -0 \rm -rf # delete files starting with .
 	echo "Removed unnecessary files!"
 
