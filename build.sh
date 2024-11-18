@@ -18,7 +18,6 @@ create () {
 	current_dir=$(pwd)
 	new_folder="MAL Pal $1"
 
-	# zip doesn't need to be removed, it just updates lol
 	if [ -d "$new_folder" ]; then
 		echo "Removed old build folder"
 		rm -rf "$new_folder"
@@ -47,19 +46,25 @@ create () {
 	if [[ $2 == 1 ]]; then
 		echo "Zipping folder..."
 
+		# when updating a zip file, it doesn't remove files so just delete zip file
+		rm "MAL Pal firefox.zip"
+		rm "MAL Pal chromium.zip"
+
 		# copy all, and ONLY, contents within new_folder
 		cd "$new_folder"
 		zip -r "../MAL Pal $1.zip" . # make zip file outside of new_folder
 		cd $current_dir
 
-		echo "Finished zipping folder!"
+		echo "Created new ZIP File called 'MAL PAL $1.zip' at '$new_folder'"
+		echo
 
 		# remove folder if building for firefox, since the folder isn't needed
 		if [[ $1 == "firefox" ]]; then
 			rm -rf "$new_folder"
 		fi
 
-		echo "Created new ZIP File called 'MAL PAL $1.zip' at '$new_folder'"
+		echo "ZIP File SHA-256 Checksum:"
+		shasum -a 256 "$new_folder.zip"
 		echo
 	else
 		echo "Created new Folder called 'MAL PAL $1' at '$new_folder'"

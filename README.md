@@ -32,7 +32,11 @@ Once installed, MAL Pal will automatically integrate with MAL with the settings 
 
 ## Extension preview
 *Preview of the pop-up as of v0.7*
+
 <img src="icons/preview.png" width="277" height="241" alt="Showcase image of the pop-up as of version 0.7">
+
+## Privacy
+MAL Pal does **not** collect, or send, any sort of data on users. MAL Pal never even sends any sort of network traffic. For example, MAL Pal doesn't: save your settings online in a server, access any APIs (including MALs API), automatically download updates itself, make requests to other websites, or work with other extensions.
 
 ## Contributing
 Contributions are welcome! Feel free to submit bug reports, feature requests, or pull requests.

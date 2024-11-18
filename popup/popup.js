@@ -25,8 +25,12 @@ chrome.storage.local.get(['showHoursInHistory'], function(result) {
 });
 
 
-/* Set version text */
-versionText.innerHTML = `<i>v${chrome.runtime.getManifest().version}</i>`;
+/* Set version text without using innerHTML :) */
+const version = chrome.runtime.getManifest().version;
+const italicElement = document.createElement('i');
+const textNode = document.createTextNode(`v${version}`);
+italicElement.appendChild(textNode);
+versionText.appendChild(italicElement);
 
 
 /* Event Listeners */
