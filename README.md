@@ -30,6 +30,10 @@ Once installed, MAL Pal will automatically integrate with MAL with the settings 
 * **Localized Broadcasting Times:** This will appear on the Information panel on the left side of the anime's page.
 * **Time to Finish:** New text will appear right beside the episode tracker on an anime's page that displays how long in hours and minutes it will take to finish the show.
 
+## Extension preview
+*Preview of the pop-up as of v0.7*
+<img src="icons/preview.png" width="277" height="241" alt="Showcase image of the pop-up as of version 0.7">
+
 ## Contributing
 Contributions are welcome! Feel free to submit bug reports, feature requests, or pull requests.
 
