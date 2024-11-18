@@ -2,7 +2,8 @@
 
 # for windows, run build.bat
 
-echo "This script will prepare the project to work with either Chromium or Firefox\n"
+echo "This script will prepare the project to work with either Chromium or Firefox"
+echo
 
 echo "What platform do you want to build the project for?"
 echo "1) Chromium browsers"
@@ -10,9 +11,9 @@ echo "2) Firefox"
 
 read choice
 
-create_folder () {
+create () {
 	# $1 = browser name
-	# $2 = 1 if we want to zip folder as well
+	# $2 = 1 if we want to zip folder instead
 	echo "Building project for $1..."
 	current_dir=$(pwd)
 	new_folder="MAL Pal $1"
@@ -34,6 +35,7 @@ create_folder () {
 	echo "Removing unnecessary files..."
 	rm "$new_folder/build.sh"
 	rm "$new_folder/MAL Pal firefox.zip"
+	rm "$new_folder/MAL Pal chromium.zip"
 	rm -rf "$new_folder/MAL Pal chromium"
 	rm -rf "$new_folder/.git"
 	rm -rf "$new_folder/.vscode"
@@ -48,17 +50,32 @@ create_folder () {
 		zip -r "../MAL Pal $1.zip" . # make zip file outside of new_folder
 		cd $current_dir
 
-		rm -rf "$new_folder"
 		echo "Finished zipping folder!"
-	fi
 
-	echo "Created new Folder called 'MAL PAL $1' at '$new_folder'"
+		echo "Created new ZIP File called 'MAL PAL $1.zip' at '$new_folder'"
+		echo
+	else
+		echo "Created new Folder called 'MAL PAL $1' at '$new_folder'"
+		echo
+	fi
 }
 
 if [[ $choice == 1 ]]; then
-	create_folder "chromium"
+	echo
+	echo "Would you like to create a ZIP file and folder, or just the folder?"
+
+	echo "1) ZIP File and Folder"
+	echo "2) Folder"
+
+	read buildChoice
+
+	if [[ $buildChoice == 1 ]]; then
+		create "chromium" 1
+	else
+		create "chromium"
+	fi
 elif [[ $choice == 2 ]]; then
-	create_folder "firefox" 1
+	create "firefox" 1
 else
 	echo "Invalid choice"
 fi
