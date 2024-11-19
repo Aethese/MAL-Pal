@@ -26,7 +26,7 @@
 			"matches": ["https://myanimelist.net/anime/*", "https://myanimelist.net/manga/*"]
 		}
 	],
-	"applications": { 
+	"browser_specific_settings": { 
 		"gecko": {
 			"id": "{f87d81a1-f80e-41be-8f8e-a8c1ffaaf5c9}"
 		}

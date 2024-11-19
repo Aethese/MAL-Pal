@@ -28,9 +28,10 @@ create () {
 
 	mv "../$new_folder" "$current_dir" # move folder out of temp location, and back into working dir
 
-	# move needed manifest to root, and remove unnecessary files
-	mv "$new_folder/platforms/$1/manifest.json" "$new_folder"
+	# move the manifest file to root
+	mv "$new_folder/platforms/manifest.json" "$new_folder"
 
+	# remove unnecessary files
 	echo "Removing unnecessary files..."
 	rm "$new_folder/build.sh"
 	rm "$new_folder/MAL Pal firefox.zip"
