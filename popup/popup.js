@@ -13,7 +13,8 @@ const beta = false;
 let betaText = '';
 if (beta)
 {
-	betaText = ' BETA BUILD'
+	const today = new Date().toLocaleDateString();
+	betaText = ` BETA BUILD (${today})`;
 }
 
 const version = chrome.runtime.getManifest().version;
@@ -23,6 +24,7 @@ const versionTxt = `v${version}`;
 const textNode = document.createTextNode(versionTxt);
 const betaNode = document.createTextNode(betaText);
 
+// add beta text as a span, so it will be inline with the version text
 const betaSpan = document.createElement('span');
 betaSpan.style.color = '#f44949';
 betaSpan.appendChild(betaNode);
