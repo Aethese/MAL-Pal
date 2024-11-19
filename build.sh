@@ -54,7 +54,7 @@ create () {
 		zip -r "../MAL Pal $1.zip" . # make zip file outside of new_folder
 		cd $current_dir
 
-		echo "Created new ZIP File called 'MAL PAL $1.zip' at '$new_folder'"
+		echo "Created new ZIP File called 'MAL PAL $1.zip'"
 		echo
 
 		# remove folder if building for firefox, since the folder isn't needed
@@ -66,7 +66,7 @@ create () {
 		shasum -a 256 "$new_folder.zip"
 		echo
 	else
-		echo "Created new Folder called 'MAL PAL $1' at '$new_folder'"
+		echo "Created new Folder called 'MAL PAL $1'"
 		echo
 	fi
 }
