@@ -75,8 +75,8 @@ h3 {
 	content: "";
 	height: 17px;
 	width: 17px;
-	left: 4px;
-	bottom: 4px;
+	left: 3px;
+	bottom: 3px;
 	background-color: white;
 	-webkit-transition: .4s;
 	transition: .4s;
