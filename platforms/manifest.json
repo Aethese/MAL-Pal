@@ -3,7 +3,7 @@
 	"name": "MAL Pal",
 	"description": "MAL Pal adds new features to MyAnimeList to make browsing easier and more convenient!",
 	"author": "Aethese",
-	"version": "0.7.2",
+	"version": "0.7.3",
 	"permissions": [
 		"storage"
 	],
@@ -23,7 +23,7 @@
 		},
 		{
 			"js": ["scripts/pages.js", "scripts/utilities.js"],
-			"matches": ["https://myanimelist.net/anime/*", "https://myanimelist.net/manga/*"]
+			"matches": ["https://myanimelist.net/anime/*", "https://myanimelist.net/anime.php?id=*"]
 		}
 	],
 	"browser_specific_settings": { 
