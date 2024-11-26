@@ -9,7 +9,7 @@ const versionText = document.getElementById('versionText');
 
 /* Set version text WITHOUT using innerHTML :) */
 // indicate in UI that the current build is a beta build
-const beta = false;
+const beta = true;
 let betaText = '';
 if (beta)
 {
@@ -50,6 +50,34 @@ chrome.storage.local.get(['showWatchLength'], function(result) {
 chrome.storage.local.get(['showHoursInHistory'], function(result) {
 	historyHourSwitch.checked = result.showHoursInHistory;
 });
+
+
+/* Handle dropdown menu animation */
+let dropdowns = document.getElementsByClassName('dropdown');
+for (let i=0; i<dropdowns.length; i++)
+{
+	dropdowns[i].addEventListener('click', function()
+	{
+		this.classList.toggle('active');
+
+		// toggle between hiding and showing
+		let panel = this.nextElementSibling;
+		if (panel.style.maxHeight)
+		{
+			panel.style.maxHeight = null;
+		}
+		else
+		{
+			const description = document.querySelector(`body > div:nth-child(${1 + ((i+1) * 2)}) > h3`).textContent;
+			// gets character length / 3 then floored to use to calculate for how much extra
+			// space may be needed if the character count reaches past 75. extra space is needed
+			// for padding purposes
+			const charLength = Math.floor(description.length / 3);
+
+			panel.style.maxHeight = Math.max(panel.scrollHeight + charLength, 75) + 'px';
+		}
+	});
+}
 
 
 /* Event Listeners */

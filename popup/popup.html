@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 	<head> <link rel="stylesheet" href="popup.css"> </head>
 	<body>
@@ -6,40 +7,50 @@
 			<h1>MAL Pal</h1>
 		</header>
 
-		<h3 title="Show how many hours someone has spent watching/reading next to Days">Enable "Show Hours":
+		<button class="dropdown" id="round_top">Show Hours</button>
+		<div class="description">
+			<h3>Show how many hours someone has spent watching/reading next to Days</h3>
 			<label class="switch">
 				<input type="checkbox" id="hoursSwitch">
 				<span class="slider round"></span>
 			</label>
-		</h3>
+		</div>
 
-		<h3 title="Show the percent a category makes up of the total entries. Hover the number in category to reveal percent">Enable "View Percentage for Category":
+		<button class="dropdown">View Percentage for Category</button>
+		<div class="description">
+			<h3>Show the percent a category makes up of the total entries. Hover the number in category to reveal percent</h3>
 			<label class="switch">
 				<input type="checkbox" id="categorySwitch">
 				<span class="slider round"></span>
 			</label>
-		</h3>
+		</div>
 
-		<h3 title="See the broadcasting time for an Anime in your local time. Must be on it's page to view">Enable "View Local Time for Broadcasts":
+		<button class="dropdown">View Local Time for Broadcasts</button>
+		<div class="description">
+			<h3>See the broadcasting time for an Anime in your local time. Must be on it's page to view</h3>
 			<label class="switch">
 				<input type="checkbox" id="timeSwitch">
 				<span class="slider round"></span>
 			</label>
-		</h3>
+		</div>
 
-		<h3 title="View how long it will take to finish an anime. Watch length will be besides the episode counter on it's page">Enable "View Watch Time Length":
+		<button class="dropdown">View Watch Time Length</button>
+		<div class="description">
+			<h3>View how long it will take to finish an anime. Watch length will be besides the episode counter on it's page</h3>
 			<label class="switch">
 				<input type="checkbox" id="watchSwitch">
 				<span class="slider round"></span>
 			</label>
-		</h3>
+		</div>
 
-		<h3 title="View how many hours someone has spent in each category under the history page">Enable "Show Hours In History":
+		<button class="dropdown" id="round_bottom">Show Hours In History</button>
+		<div class="description">
+			<h3>View how many hours someone has spent in each category under the history page</h3>
 			<label class="switch">
 				<input type="checkbox" id="showHistoryHours">
 				<span class="slider round"></span>
 			</label>
-		</h3>
+		</div>
 
 		<div class="footer">
 			<p><i>Refresh for settings to take affect</i></p>

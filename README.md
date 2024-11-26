@@ -12,8 +12,8 @@ MAL Pal adds new features to MyAnimeList to make browsing easier and more conven
 ## Installation
 
 #### Option 1: Install from Chrome Web Store or from Firefox Add-ons
-1. Download the extension from the [Chrome Web Store](https://chromewebstore.google.com/detail/mal-pal/jegmpjgnklkpcgdbadphgnelkcdfdpob) or from [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/mal-pal/)
-2. Click "Add to Chrome" or "Add to Firefox"
+1. Download the extension from the [Chrome Web Store](https://chromewebstore.google.com/detail/mal-pal/jegmpjgnklkpcgdbadphgnelkcdfdpob), from [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/mal-pal/), or from [Opera addons](https://addons.opera.com/en/extensions/details/mal-pal/) (not currently available)
+2. Click "Add to Chrome", "Add to Firefox", or "Add to Opera"
 3. Enjoy your new enhanced MAL experience!
 
 #### Option 2: Installing from Source Code
