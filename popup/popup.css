@@ -71,7 +71,7 @@ h3 {
 	float: right;
 	margin-left: 5px;
 }
-  
+
 .active:after {
 	color: #383838;
 	transform: scale(1, -1); /* flip vertically */
@@ -141,6 +141,35 @@ input:checked + .slider:before {
 	-webkit-transform: translateX(17px);
 	-ms-transform: translateX(17px);
 	transform: translateX(17px);
+}
+
+.button {
+	height: 24px;
+	line-height: 24px;
+	display: inline-block;
+	font-size: 14px;
+	padding: 0 16px;
+	border-radius: 2px;
+	min-width: 120px;
+	position: relative;
+	cursor: pointer;
+	transition: .4s;
+	background: #36509D;
+	color: #fff;
+	border-radius: 6px;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.26);
+	border: 1px solid #36509D;
+	vertical-align: middle;
+}
+
+.button:hover {
+	transition: .4s;
+	box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.26);
+}
+
+.button:active {
+	transition: .2s;
+	box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.26);
 }
 
 #round_top {

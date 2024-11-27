@@ -4,6 +4,7 @@ const timeSwitch = document.getElementById('timeSwitch');
 const watchSwitch = document.getElementById('watchSwitch');
 const historyHourSwitch = document.getElementById('showHistoryHours');
 
+const refreshBtn = document.getElementById('refresh');
 const versionText = document.getElementById('versionText');
 
 
@@ -74,6 +75,7 @@ for (let i=0; i<dropdowns.length; i++)
 			// for padding purposes
 			const charLength = Math.floor(description.length / 3);
 
+			// minimum height of 75 px
 			panel.style.maxHeight = Math.max(panel.scrollHeight + charLength, 75) + 'px';
 		}
 	});
@@ -113,5 +115,11 @@ historyHourSwitch.addEventListener('change', function() {
 	let timeChecked = this.checked;
 	chrome.storage.local.set({'showHoursInHistory': timeChecked}, function() {
 		console.log(`[MAL Pal: Popup] Updated settings to ${timeChecked} for hours in history`);
+	});
+});
+
+refreshBtn.addEventListener('click', function() {
+	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+		chrome.tabs.reload(tabs[0].id);
 	});
 });
