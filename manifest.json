@@ -4,7 +4,7 @@
 	"description": "MAL Pal adds new features to MyAnimeList to make browsing easier and more convenient!",
 	"author": "Aethese",
 	"version": "1.0",
-	"version_name": "1.0 beta 2",
+	"version_name": "Beta 3",
 	"permissions": [
 		"storage"
 	],
@@ -15,8 +15,14 @@
 		"128": "icons/128.png"
 	},
 	"action": {
-	  "default_popup": "popup/popup.html"
+		"default_popup": "popup/popup.html"
 	},
+	"web_accessible_resources": [
+		{
+			"matches": ["<all_urls>"],
+			"resources": ["data.json"]
+		}
+	],
 	"content_scripts": [
 		{
 			"js": ["scripts/profile.js", "scripts/utilities.js"],
@@ -25,6 +31,10 @@
 		{
 			"js": ["scripts/pages.js", "scripts/utilities.js"],
 			"matches": ["https://myanimelist.net/anime/*", "https://myanimelist.net/anime.php?id=*"]
+		},
+		{
+			"js": ["scripts/schedule.js"],
+			"matches": ["https://myanimelist.net/anime/season/schedule", "https://myanimelist.net/animelist/*?status=1"]
 		}
 	],
 	"browser_specific_settings": { 

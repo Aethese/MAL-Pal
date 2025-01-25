@@ -1,9 +1,9 @@
 body {
 	/*
-	update height by +50 for each new setting
+	update height by +54.5 for each new setting
 	*/
 	min-width: 400px;
-	min-height: 385px;
+	min-height: 425px;
 	max-height: 470px;
 	position: relative;
 	vertical-align: middle;
@@ -25,10 +25,6 @@ header {
 	margin-top: 20px;
 	margin-bottom: 10px;
 	font-size: 1.05em;
-	/* position: absolute;
-	bottom: 0;
-	vertical-align: middle;
-	width: 100%; */
 }
 
 h1 {

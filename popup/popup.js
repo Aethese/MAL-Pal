@@ -14,8 +14,9 @@ const beta = true;
 let betaText = '';
 if (beta)
 {
-	const today = new Date().toLocaleDateString();
-	betaText = ` BETA BUILD (${today})`;
+	let versionName = chrome.runtime.getManifest().version_name;
+	if (versionName) {versionName = versionName + ' ';}
+	betaText = ` ${versionName}BETA BUILD (01/25/2025)`;
 }
 
 const version = chrome.runtime.getManifest().version;
