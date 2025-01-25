@@ -5,6 +5,7 @@ body {
 	min-width: 400px;
 	min-height: 425px;
 	max-height: 470px;
+	max-width: 400px;
 	position: relative;
 	vertical-align: middle;
 	background-color: #383838;

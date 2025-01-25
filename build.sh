@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 
-# for windows, run build.bat
-
 echo "This script will prepare the project to work with either Chromium or Firefox"
 echo
 
 echo "What platform do you want to build the project for?"
 echo "1) Chromium browsers"
 echo "2) Firefox"
+echo "3) Both"
 
 read choice
 
@@ -17,7 +16,7 @@ create () {
 	current_dir=$(pwd)
 	new_folder="MAL Pal $1"
 
-	if [ -d "$new_folder" ]; then
+	if [[ -d "$new_folder" ]]; then
 		echo "Removed old build folder"
 		rm -rf "$new_folder"
 	fi
@@ -27,9 +26,6 @@ create () {
 
 	mv "../$new_folder" "$current_dir" # move folder out of temp location, and back into working dir
 
-	# move the manifest file to root
-	mv "$new_folder/platforms/manifest.json" "$new_folder"
-
 	# remove unnecessary files
 	echo "Removing unnecessary files..."
 	rm "$new_folder/build.sh"
@@ -37,8 +33,6 @@ create () {
 	rm "$new_folder/MAL Pal chromium.zip"
 	rm -rf "$new_folder/.git"
 	rm -rf "$new_folder/.vscode"
-	# remove platforms folder because chrome hates multiple manifest files lol
-	rm -rf "$new_folder/platforms"
 	find "$new_folder" -name ".*" -type f -print0| xargs -0 \rm -rf # delete files starting with .
 	echo "Removed unnecessary files!"
 
@@ -66,6 +60,9 @@ create () {
 if [[ $choice == 1 ]]; then
 	create "chromium"
 elif [[ $choice == 2 ]]; then
+	create "firefox"
+elif [[ $choice == 3 ]]; then
+	create "chromium"
 	create "firefox"
 else
 	echo "Invalid choice"
