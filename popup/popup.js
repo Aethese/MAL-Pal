@@ -4,6 +4,7 @@ const timeSwitch = document.getElementById('timeSwitch');
 const watchSwitch = document.getElementById('watchSwitch');
 const historyHourSwitch = document.getElementById('showHistoryHours');
 
+const refreshBtn = document.getElementById('refresh');
 const versionText = document.getElementById('versionText');
 
 
@@ -13,13 +14,15 @@ const beta = false;
 let betaText = '';
 if (beta)
 {
-	const today = new Date().toLocaleDateString();
-	betaText = ` BETA BUILD (${today})`;
+	const betaDate = '01/25/2025'; // US format
+	let versionName = chrome.runtime.getManifest().version_name;
+	if (versionName) {versionName = versionName + ' ';}
+	betaText = ` ${versionName}BETA BUILD (${betaDate})`;
 }
 
 const version = chrome.runtime.getManifest().version;
 const italicElement = document.createElement('i');
-const versionTxt = `v${version}`;
+const versionTxt = `v${version} by Aethese`;
 
 const textNode = document.createTextNode(versionTxt);
 const betaNode = document.createTextNode(betaText);
@@ -50,6 +53,35 @@ chrome.storage.local.get(['showWatchLength'], function(result) {
 chrome.storage.local.get(['showHoursInHistory'], function(result) {
 	historyHourSwitch.checked = result.showHoursInHistory;
 });
+
+
+/* Handle dropdown menu animation */
+let dropdowns = document.getElementsByClassName('dropdown');
+for (let i=0; i<dropdowns.length; i++)
+{
+	dropdowns[i].addEventListener('click', function()
+	{
+		this.classList.toggle('active');
+
+		// toggle between hiding and showing
+		let panel = this.nextElementSibling;
+		if (panel.style.maxHeight)
+		{
+			panel.style.maxHeight = null;
+		}
+		else
+		{
+			const description = document.querySelector(`body > div:nth-child(${1 + ((i+1) * 2)}) > h3`).textContent;
+			// gets character length / 3 then floored to use to calculate for how much extra
+			// space may be needed if the character count reaches past 75. extra space is needed
+			// for padding purposes
+			const charLength = Math.floor(description.length / 3);
+
+			// minimum height of 75 px
+			panel.style.maxHeight = Math.max(panel.scrollHeight + charLength, 75) + 'px';
+		}
+	});
+}
 
 
 /* Event Listeners */
@@ -85,5 +117,11 @@ historyHourSwitch.addEventListener('change', function() {
 	let timeChecked = this.checked;
 	chrome.storage.local.set({'showHoursInHistory': timeChecked}, function() {
 		console.log(`[MAL Pal: Popup] Updated settings to ${timeChecked} for hours in history`);
+	});
+});
+
+refreshBtn.addEventListener('click', function() {
+	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+		chrome.tabs.reload(tabs[0].id);
 	});
 });

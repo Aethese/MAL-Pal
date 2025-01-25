@@ -3,3 +3,5 @@ MAL Pal chromium/
 *.zip
 # i unhide some files starting with .
 .vscode/
+icons/old_previews/
+old_dbs/

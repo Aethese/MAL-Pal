@@ -1,9 +1,10 @@
 {
-	"manifest_version": 2,
+	"manifest_version": 3,
 	"name": "MAL Pal",
 	"description": "MAL Pal adds new features to MyAnimeList to make browsing easier and more convenient!",
 	"author": "Aethese",
-	"version": "0.7.1",
+	"version": "1.0",
+	"version_name": "",
 	"permissions": [
 		"storage"
 	],
@@ -13,9 +14,15 @@
 		"48": "icons/48.png",
 		"128": "icons/128.png"
 	},
-	"browser_action": {
-	  "default_popup": "popup/popup.html"
+	"action": {
+		"default_popup": "popup/popup.html"
 	},
+	"web_accessible_resources": [
+		{
+			"matches": ["<all_urls>"],
+			"resources": ["data.json"]
+		}
+	],
 	"content_scripts": [
 		{
 			"js": ["scripts/profile.js", "scripts/utilities.js"],
@@ -23,12 +30,17 @@
 		},
 		{
 			"js": ["scripts/pages.js", "scripts/utilities.js"],
-			"matches": ["https://myanimelist.net/anime/*", "https://myanimelist.net/manga/*"]
+			"matches": ["https://myanimelist.net/anime/*", "https://myanimelist.net/anime.php?id=*"]
+		},
+		{
+			"js": ["scripts/schedule.js"],
+			"matches": ["https://myanimelist.net/anime/season/schedule", "https://myanimelist.net/animelist/*?status=1"]
 		}
 	],
 	"browser_specific_settings": { 
 		"gecko": {
-			"id": "{f87d81a1-f80e-41be-8f8e-a8c1ffaaf5c9}"
+			"id": "{f87d81a1-f80e-41be-8f8e-a8c1ffaaf5c9}",
+			"strict_min_version": "109.0"
 		}
 	}
 }

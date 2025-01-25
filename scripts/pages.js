@@ -68,7 +68,15 @@ function translateDate(JSTDate)
 /* Get episode length, translate to hours, then show on page */
 function translateMinutes(durationText, episodeCount)
 {
-	// durationText = the full duration text on left panel
+	// if there are hours involved, get the duration differently
+	const hourLength = durationText.match(/(\d+)[^\d]+(\d+)/);
+	if (hourLength)
+	{
+		const hours = Number(hourLength[1]) * 60;
+		const min = Number(hourLength[2]);
+		const totalMinutes = (hours + min) * episodeCount;
+		return totalMinutes;
+	}
 	const length = durationText.match(/^\d+/)[0];
 	const totalMinutes = Number(length) * episodeCount;
 	return totalMinutes;
@@ -78,7 +86,9 @@ function addWatchText(length)
 {
 	let div = document.createElement('div');
 	div.classList.add('di-ib');
-	div.style['margin-left'] = '1.1em';
+	div.classList.add('form-user-episode');
+	div.classList.add('MAL-Pal-generated');
+	div.style['margin-left'] = '8px';
 	let p = document.createElement('p');
 
 	const statusBlock = document.querySelector('#content > table > tbody > tr > td:nth-child(2) > div > table > tbody > tr:nth-child(1) > td > div.pb16 > div.di-t.w100.mt12 > div.anime-detail-header-stats.di-tc.va-t > div.user-status-block.js-user-status-block.fn-grey6.clearfix.al.mt8.po-r');
