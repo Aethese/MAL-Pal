@@ -88,7 +88,7 @@ function addWatchText(length)
 	div.classList.add('di-ib');
 	div.classList.add('form-user-episode');
 	div.classList.add('MAL-Pal-generated');
-	div.style['margin-left'] = '1em';
+	div.style['margin-left'] = '8px';
 	let p = document.createElement('p');
 
 	const statusBlock = document.querySelector('#content > table > tbody > tr > td:nth-child(2) > div > table > tbody > tr:nth-child(1) > td > div.pb16 > div.di-t.w100.mt12 > div.anime-detail-header-stats.di-tc.va-t > div.user-status-block.js-user-status-block.fn-grey6.clearfix.al.mt8.po-r');
