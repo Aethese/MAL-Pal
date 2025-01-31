@@ -27,7 +27,7 @@ create () {
 	# remove unnecessary files
 	echo "Removing unnecessary files..."
 	# files first
-	unnecessaryFiles=("build.sh" "MAL Pal firefox.zip" "MAL Pal chromium.zip" "README.md" "icons/512.png")
+	unnecessaryFiles=("build.sh" "MAL Pal Build.zip" "README.md" "icons/512.png")
 	for fileName in "${unnecessaryFiles[@]}"
 	do
 		rm "$new_folder/$fileName"
