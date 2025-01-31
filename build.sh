@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 echo "This script will prepare the project to work with either Chromium or Firefox"
 echo
@@ -28,11 +28,18 @@ create () {
 
 	# remove unnecessary files
 	echo "Removing unnecessary files..."
-	rm "$new_folder/build.sh"
-	rm "$new_folder/MAL Pal firefox.zip"
-	rm "$new_folder/MAL Pal chromium.zip"
+	# files first
+	unnecessaryFiles=("build.sh" "MAL Pal firefox.zip" "MAL Pal chromium.zip" "README.md" "icons/512.png")
+	for fileName in "${unnecessaryFiles[@]}"
+	do
+		rm "$new_folder/$fileName"
+	done
+	# then folders
 	rm -rf "$new_folder/.git"
 	rm -rf "$new_folder/.vscode"
+	rm -rf "$new_folder/icons/readme"
+	rm -rf "$new_folder/icons/old_previews" # local folder for storing old preview images
+	rm -rf "$new_folder/old_dbs" # local folder for storing old database versions
 	find "$new_folder" -name ".*" -type f -print0| xargs -0 \rm -rf # delete files starting with .
 	echo "Removed unnecessary files!"
 

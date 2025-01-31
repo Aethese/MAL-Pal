@@ -1,5 +1,5 @@
 # <div align="center"><img src="icons/128.png" width="80" height="80" alt="MAL Pal Logo" style="vertical-align: bottom;"> MAL Pal</div>
-**A Chromium and Firefox extension to enhance your MyAnimeList experience.**
+**A [Chromium](https://chromewebstore.google.com/detail/mal-pal/jegmpjgnklkpcgdbadphgnelkcdfdpob) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/mal-pal/) extension to enhance your MyAnimeList experience.**
 
 MAL Pal adds new features to MyAnimeList to make browsing easier and more convenient! Giving you the option to view how many hours a user has spent consuming the medium, view broadcasting time in your time, see how long it will take to finish a season, and more!
 
