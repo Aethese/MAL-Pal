@@ -1,20 +1,18 @@
 #!/bin/bash
 
-echo "This script will prepare the project to work with either Chromium or Firefox"
+echo "This script will build the project for both Chromium and Firefox"
 echo
 
-echo "What platform do you want to build the project for?"
-echo "1) Chromium browsers"
-echo "2) Firefox"
-echo "3) Both"
+echo "Would you like to continue?"
+echo "1) Yes"
+echo "2) No"
 
 read choice
 
 create () {
-	# $1 = browser name
-	echo "Building project for $1..."
+	echo "Building project..."
 	current_dir=$(pwd)
-	new_folder="MAL Pal $1"
+	new_folder="MAL Pal Build"
 
 	if [[ -d "$new_folder" ]]; then
 		echo "Removed old build folder"
@@ -46,14 +44,14 @@ create () {
 	echo "Zipping folder..."
 
 	# when updating a zip file, it doesn't remove files so just delete zip file
-	rm "MAL Pal $1.zip"
+	rm "MAL Pal Build.zip"
 
 	# copy all, and ONLY, contents within new_folder
 	cd "$new_folder"
-	zip -r "../MAL Pal $1.zip" . # make zip file outside of new_folder
+	zip -r "../MAL Pal Build.zip" . # make zip file outside of new_folder
 	cd $current_dir
 
-	echo "Created new ZIP File called 'MAL PAL $1.zip'"
+	echo "Created new ZIP File called 'MAL PAL Build.zip'"
 	echo
 
 	# clean up old folder
@@ -65,12 +63,8 @@ create () {
 }
 
 if [[ $choice == 1 ]]; then
-	create "chromium"
-elif [[ $choice == 2 ]]; then
-	create "firefox"
-elif [[ $choice == 3 ]]; then
-	create "chromium"
-	create "firefox"
+	create
 else
-	echo "Invalid choice"
+	echo "Exiting..."
+	exit 0
 fi
