@@ -66,14 +66,7 @@ function translateDate(JSTDate)
 	const dateString = `${day} ${nextDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} ${time}:00 GMT+0900 (JST)`; 
 	const date = new Date(dateString);
 
-	let localTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-	if (localTime.includes('PM'))
-	{
-		let newHour = Number(localTime.substring(0, 2)) + 12;
-		localTime = newHour + localTime.slice(2); // remove old hour
-	}
-	localTime = localTime.slice(0, -3); // remove AM/PM
+	let localTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
 	const localDayOfWeek = date.toLocaleDateString([], { weekday: 'long' });
 
 	return ` ${localDayOfWeek}s at ${localTime} (Local)`;
