@@ -1,5 +1,19 @@
 // changes that will be made to anime/manga pages
 
+/*
+Available options, and functions used for those options:
+- Showing Length of a show
+	- getLeftPanelInfo()
+	- getNextDateForDay()
+	- translateMinutes()
+	- addWatchText()
+	- addWatchLength()
+- Changing an airing show's time to a user's local time
+	- getLeftPanelInfo()
+	- translateDate()
+	- changeTime()
+*/
+
 /* Helper Functions */
 function getLeftPanelInfo(lookFor)
 {

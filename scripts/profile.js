@@ -1,3 +1,19 @@
+// Handles changes made to user profiles
+
+/*
+Available options, and functions used for those options:
+- Adding hours next to "Days" text
+	- addHours()
+	- formatNum()
+- Showing how much a category takes up of their total entry count in percent form
+	- addCategoryPercents()
+	- addPercent()
+	- strToInt()
+	- formatNum()
+- Show hours next to "Days" in a user's watch history
+	- addHoursToHeaders()
+*/
+
 const daysAnime = document.querySelector('#statistics > div:nth-child(2) > div.stats.anime > div.stat-score.di-t.w100.pt8 > div.di-tc.al.pl8.fs12.fw-b');
 const daysManga = document.querySelector('#statistics > div:nth-child(3) > div.stats.manga > div.stat-score.di-t.w100.pt8.mb8 > div.di-tc.al.pl8.fs12.fw-b');
 
