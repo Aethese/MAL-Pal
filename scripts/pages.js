@@ -66,10 +66,11 @@ function translateDate(JSTDate)
 	const dateString = `${day} ${nextDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} ${time}:00 GMT+0900 (JST)`; 
 	const date = new Date(dateString);
 
-	let localTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+	const localTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
 	const localDayOfWeek = date.toLocaleDateString([], { weekday: 'long' });
+	const timezone = new Date().toLocaleTimeString('en-us',{timeZoneName:'short'}).split(' ')[2]
 
-	return ` ${localDayOfWeek}s at ${localTime} (Local)`;
+	return ` ${localDayOfWeek}s at ${localTime} (${timezone})`;
 }
 
 /* Get episode length, translate to hours, then show on page */
