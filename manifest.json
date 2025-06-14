@@ -3,8 +3,7 @@
 	"name": "MAL Pal",
 	"description": "MAL Pal adds new features to MyAnimeList to make browsing easier and more convenient!",
 	"author": "Aethese",
-	"version": "1.0.1",
-	"version_name": "",
+	"version": "1.0.2",
 	"permissions": [
 		"storage"
 	],

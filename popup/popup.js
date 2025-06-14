@@ -9,31 +9,13 @@ const versionText = document.getElementById('versionText');
 
 
 /* Set version text WITHOUT using innerHTML :) */
-// indicate in UI that the current build is a beta build
-const beta = false;
-let betaText = '';
-if (beta)
-{
-	const betaDate = '01/25/2025'; // US format
-	let versionName = chrome.runtime.getManifest().version_name;
-	if (versionName) {versionName = versionName + ' ';}
-	betaText = ` ${versionName}BETA BUILD (${betaDate})`;
-}
-
 const version = chrome.runtime.getManifest().version;
 const italicElement = document.createElement('i');
 const versionTxt = `v${version} by Aethese`;
 
 const textNode = document.createTextNode(versionTxt);
-const betaNode = document.createTextNode(betaText);
-
-// add beta text as a span, so it will be inline with the version text
-const betaSpan = document.createElement('span');
-betaSpan.style.color = '#f44949';
-betaSpan.appendChild(betaNode);
 
 italicElement.appendChild(textNode);
-italicElement.appendChild(betaSpan);
 versionText.appendChild(italicElement);
 
 

@@ -111,8 +111,16 @@ function changeTime()
 	const dateInfo = getLeftPanelInfo('(JST)'); // [JSTDate, path]
 	if (dateInfo)
 	{
-		let newText = translateDate(dateInfo[0]);
+		// first change broadcast time
+		const newText = translateDate(dateInfo[0]);
 		dateInfo[1].childNodes[2].nodeValue = `${newText}`;
+
+		// next add info icon with actual broadcast data
+		const infoSpan = document.createElement('span');
+		infoSpan.title = dateInfo[0];
+		infoSpan.appendChild(document.createTextNode(' ⓘ'));
+		dateInfo[1].appendChild(infoSpan);
+
 		console.log('[MAL Pal: Pages] Updated broadcast time');
 	}
 	else
