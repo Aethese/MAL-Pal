@@ -24,10 +24,6 @@
 		{
 			"js": ["scripts/pages.js", "scripts/utilities.js"],
 			"matches": ["https://myanimelist.net/anime/*", "https://myanimelist.net/anime.php?id=*"]
-		},
-		{
-			"js": ["scripts/schedule.js"],
-			"matches": ["https://myanimelist.net/anime/season/schedule", "https://myanimelist.net/animelist/*?status=1"]
 		}
 	],
 	"browser_specific_settings": { 
