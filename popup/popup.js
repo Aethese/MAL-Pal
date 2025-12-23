@@ -38,16 +38,6 @@ chrome.storage.local.get(['showHoursInHistory'], function(result) {
 
 
 /* Handle dropdown menu animation */
-function forceResize()
-{
-	// bad and not fully working fix to try and help the issue with firefox
-	// not properly resizing the popup window like chromium browsers do
-	setTimeout(() => {
-		document.body.style.height = 'auto';
-		document.documentElement.style.height = 'auto';
-	}, 250);
-}
-
 let dropdowns = document.getElementsByClassName('dropdown');
 for (let i=0; i<dropdowns.length; i++)
 {
@@ -60,7 +50,6 @@ for (let i=0; i<dropdowns.length; i++)
 		if (panel.style.maxHeight)
 		{
 			panel.style.maxHeight = null;
-			forceResize();
 		}
 		else
 		{
