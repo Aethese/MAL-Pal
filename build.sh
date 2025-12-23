@@ -12,6 +12,12 @@ read choice
 create () {
 	echo "Building project..."
 	current_dir=$(pwd)
+
+	if ! [[ "$current_dir" == *"MAL-Pal" ]]; then
+		echo "You must be in the MAL-Pal directory to build this project!"
+		exit 1
+	fi
+
 	new_folder="MAL Pal Build"
 
 	if [[ -d "$new_folder" ]]; then
