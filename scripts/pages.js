@@ -39,14 +39,14 @@ function getNextDateForDay(day)
 {
 	const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 	const today = new Date();
-	const todayIndex = today.getDay();   
+	const todayIndex = today.getDay();
 
 	const targetDayIndex = daysOfWeek.indexOf(day);
 
 	let daysToAdd = targetDayIndex - todayIndex;
 	if (daysToAdd <= 0)
 	{
-		daysToAdd += 7; 
+		daysToAdd += 7;
 	}
 
 	const nextDate = new Date();
@@ -68,7 +68,7 @@ function translateDate(JSTDate)
 
 	const localTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
 	const localDayOfWeek = date.toLocaleDateString([], { weekday: 'long' });
-	const timezone = new Date().toLocaleTimeString('en-us',{timeZoneName:'short'}).split(' ')[2]
+	const timezone = new Date().toLocaleTimeString('en-us',{timeZoneName:'short'}).split(' ')[2];
 
 	return ` ${localDayOfWeek}s at ${localTime} (${timezone})`;
 }
@@ -85,7 +85,13 @@ function translateMinutes(durationText, episodeCount)
 		const totalMinutes = (hours + min) * episodeCount;
 		return totalMinutes;
 	}
-	const length = durationText.match(/^\d+/)[0];
+
+	let length = durationText.match(/^\d+/)[0];
+	if (durationText.includes('sec'))
+	{
+		length /= 60;
+		console.log('[MAL Pal: Pages] Found sec per ep, handling accordingly');
+	}
 	const totalMinutes = Number(length) * episodeCount;
 	return totalMinutes;
 }
