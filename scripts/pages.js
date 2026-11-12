@@ -12,19 +12,27 @@ Available options, and functions used for those options:
 	- getLeftPanelInfo()
 	- translateDate()
 	- changeTime()
+- Show airing duration in info panel
+	- getLeftPanelInfo()
+	- addAiringDuration()
 */
 
 /* Helper Functions */
-function getLeftPanelInfo(lookFor)
+function getLeftPanelInfo(lookFor, separatePart)
 {
-	// lookFor: str = what we're looking for in the left panel
+	// lookFor: str      = what we're looking for in the left panel
+	// separatePart: int = identify if we're either looking before or after the colon (1 = left side, 2 = right)
 	// returns: [value, path]
 
 	const spaceitItems = document.body.getElementsByClassName('spaceit_pad');
 
 	for (let i=0; i<spaceitItems.length; i++)
 	{
-		let nodeValue = spaceitItems[i].childNodes[2].nodeValue;
+		// differentiate between grabbing before, or after the colon
+		let nodeValue;
+		if (separatePart === 1) nodeValue = spaceitItems[i].childNodes[separatePart].textContent;
+		else nodeValue = spaceitItems[i].childNodes[separatePart].nodeValue;
+
 		if (nodeValue.includes(lookFor))
 		{
 			return [nodeValue.trim(), spaceitItems[i]];
@@ -114,7 +122,7 @@ function addWatchText(length)
 /* Checks and Changing on screen data */
 function changeTime()
 {
-	const dateInfo = getLeftPanelInfo('(JST)'); // [JSTDate, path]
+	const dateInfo = getLeftPanelInfo('(JST)', 2); // [JSTDate, path]
 	if (dateInfo)
 	{
 		// first change broadcast time
@@ -138,13 +146,13 @@ function changeTime()
 function addWatchLength()
 {
 	const episodeCount = document.querySelector('#curEps');
-	if (episodeCount.textContent == '?')
+	if (episodeCount.textContent === '?')
 	{
 		console.log('[MAL Pal: Pages] Anime not finished, so won\'t get duration');
 		return;
 	}
 
-	const durationInfo = getLeftPanelInfo('per ep.'); // [duration, path]
+	const durationInfo = getLeftPanelInfo('per ep.', 2); // [duration, path]
 	if (durationInfo)
 	{
 		const totalMin = translateMinutes(durationInfo[0], episodeCount.textContent);
@@ -158,6 +166,57 @@ function addWatchLength()
 	}
 }
 
+/* Add airing duration length in information panel */
+function addAiringDuration()
+{
+	// get the "Aired" info, do date math between the two, then
+	// return that data in months, or years if long enough
+
+	// if actively airing, the Aired dates will be: Jan 01, 1900 to ?
+	// in the case if actively airing, instead of ? just use today's date
+
+	// Test Anime:
+	//   One Piece, Saiki K, Monster, Fullmetal Alchemist (51 ep), Afro Samurai, Baki Hanma 2nd Season
+
+	const airingEl = getLeftPanelInfo('Aired', 1);
+	if (!airingEl)
+	{
+		console.log('[MAL Pal: Pages] Couldn\'t find airing date, so skipping');
+		return;
+	}
+
+	const fullAiringData = airingEl[1].childNodes[2].nodeValue.trim();
+	const airingDataSplit = fullAiringData.split(' to ');
+
+	let airingToDate;
+	if (airingDataSplit[1] === '?') airingToDate = new Date();
+	else airingToDate = new Date(airingDataSplit[1]);
+
+	const bigAiringDifference = airingToDate - new Date(airingDataSplit[0]); // ms
+	let airingDifferenceHuman;
+
+	// 365.25 / 12 = 30.4375
+	let airingDifference = (bigAiringDifference / (1000 * 60 * 60 * 24 * 30.4375)).toFixed(1);
+
+	if (airingDifference >= 12)
+	{
+		const yearsDifference = (bigAiringDifference / (1000 * 60 * 60 * 24 * 365.25)).toFixed(1);
+		airingDifferenceHuman = `(${yearsDifference} ${yearsDifference == 1 ? "year" : "years"})`;
+	}
+	else if (airingDifference < 1)
+	{
+		console.log('[MAL Pal: Pages] Airing duration less than a month, so not adding duration');
+		return;
+	}
+	else
+	{
+		airingDifferenceHuman = `(${airingDifference} ${airingDifference == 1 ? "month" : "months"})`;
+	}
+
+	// Rewrite Airing data after all is said and done
+	airingEl[1].childNodes[2].nodeValue = ` ${fullAiringData} ${airingDifferenceHuman}`
+	console.log('[MAL Pal: Pages] Added airing duration');
+}
 
 
 chrome.storage.local.get(['showLocalTime'], function(result) {
@@ -171,5 +230,12 @@ chrome.storage.local.get(['showWatchLength'], function(result) {
 	if (result.showWatchLength)
 	{
 		addWatchLength();
+	}
+});
+
+chrome.storage.local.get(['showAiringDuration'], function(result) {
+	if (result.showAiringDuration)
+	{
+		addAiringDuration();
 	}
 });

@@ -4,6 +4,7 @@ const timeSwitch = document.getElementById('timeSwitch');
 const watchSwitch = document.getElementById('watchSwitch');
 const historyHourSwitch = document.getElementById('showHistoryHours');
 const accountAgeSwitch = document.getElementById('showAccountAge');
+const airingDurationSwitch = document.getElementById('showAiringDuration');
 
 const refreshBtn = document.getElementById('refresh');
 const versionText = document.getElementById('versionText');
@@ -38,6 +39,9 @@ chrome.storage.local.get(['showHoursInHistory'], function(result) {
 });
 chrome.storage.local.get(['showAccountAgeinYears'], function(result) {
 	accountAgeSwitch.checked = result.showAccountAgeinYears;
+});
+chrome.storage.local.get(['showAiringDuration'], function(result) {
+	airingDurationSwitch.checked = result.showAiringDuration;
 });
 
 
@@ -114,6 +118,13 @@ accountAgeSwitch.addEventListener('change', function() {
 	let timeChecked = this.checked;
 	chrome.storage.local.set({'showAccountAgeinYears': timeChecked}, function() {
 		console.log(`[MAL Pal: Popup] Updated settings to ${timeChecked} for show account age with years`);
+	});
+});
+
+airingDurationSwitch.addEventListener('change', function() {
+	let timeChecked = this.checked;
+	chrome.storage.local.set({'showAiringDuration': timeChecked}, function() {
+		console.log(`[MAL Pal: Popup] Updated settings to ${timeChecked} for showing airing duration`);
 	});
 });
 

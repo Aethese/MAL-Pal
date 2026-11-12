@@ -3,8 +3,8 @@ body {
 	update height by +54.5 ish for each new setting
 	*/
 	min-width: 400px;
-	min-height: 485px;
-	max-height: 520px;
+	min-height: 490px;
+	max-height: 540px;
 	max-width: 400px;
 	position: relative;
 	vertical-align: middle;
@@ -23,7 +23,7 @@ header {
 
 .footer {
 	text-align: center;
-	margin-top: 20px;
+	margin-top: 10px;
 	font-size: 1.05em;
 }
 

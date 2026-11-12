@@ -12,6 +12,9 @@ Available options, and functions used for those options:
 	- formatNum()
 - Show hours next to "Days" in a user's watch history
 	- addHoursToHeaders()
+- Show years alongside user's Joined date
+	- getJoinedElement()
+	- joinDateToYearsAgo()
 */
 
 const daysAnime = document.querySelector('#statistics > div:nth-child(2) > div.stats.anime > div.stat-score.di-t.w100.pt8 > div.di-tc.al.pl8.fs12.fw-b');
@@ -191,7 +194,7 @@ if (userStatusTable)
 	if (result.showAccountAgeinYears)
 	{
 		joinDateToYearsAgo();
-		console.log('[MAL Pal: Profile] Added years next to join date');
+		console.log('[MAL Pal: Profile] Added years next to Joined date');
 	}
 });
 }
