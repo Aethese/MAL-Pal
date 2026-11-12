@@ -1,10 +1,10 @@
 body {
 	/*
-	update height by +54.5 for each new setting
+	update height by +54.5 ish for each new setting
 	*/
 	min-width: 400px;
-	min-height: 425px;
-	max-height: 470px;
+	min-height: 485px;
+	max-height: 520px;
 	max-width: 400px;
 	position: relative;
 	vertical-align: middle;
