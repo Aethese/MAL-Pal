@@ -22,6 +22,8 @@ const totalEntriesManga = document.querySelector('#statistics > div:nth-child(3)
 
 const historyTab = document.querySelector('#content > div.history_content_wrapper');
 
+const userStatusTable = document.querySelector('#content > div > div.container-left > div > ul.user-status.border-top.pb8.mb4');
+
 /* Helper Functions */
 function strToInt(string)
 {
@@ -114,6 +116,40 @@ function addHoursToHeaders()
 	}
 }
 
+/* Add years next to joined date */
+function getJoinedElement()
+{
+	// looks through all status titles on each profiles, e.g. Location, Joined
+	// once joined is found, return the next element, which will be their join date
+	// returns: element
+
+	const userStatuses = document.body.getElementsByClassName('user-status-title');
+
+	for (let i=0; i<userStatuses.length; i++)
+	{
+		let statusTitle = userStatuses[i].textContent;
+		if (statusTitle === "Joined")
+		{
+			return userStatuses[i].nextElementSibling;
+		}
+	}
+	return undefined;
+}
+
+function joinDateToYearsAgo()
+{ 
+	const joinElement = getJoinedElement();
+	const ogJoindate = joinElement.textContent;
+
+	const now = new Date();
+	const diffMs = now - new Date(ogJoindate); // in ms
+
+	// take ms difference into years to 1 decimal point
+	// also take into consideration leap year, hence 365__.25__
+	const diffYears = (diffMs / (1000 * 60 * 60 * 24 * 365.25)).toFixed(1);
+
+	joinElement.textContent = `${ogJoindate} (${diffYears} years ago)`
+}
 
 /* Checks and Handlers for changing data */
 if (daysAnime) // add hours spent watching next to "Days:" text
@@ -147,4 +183,15 @@ if (historyTab)
 			console.log('[MAL Pal: Profile] Added hours to history');
 		}
 	});
+}
+
+if (userStatusTable)
+{
+	chrome.storage.local.get(['showAccountAgeinYears'], function(result) {
+	if (result.showAccountAgeinYears)
+	{
+		joinDateToYearsAgo();
+		console.log('[MAL Pal: Profile] Added years next to join date');
+	}
+});
 }
