@@ -53,6 +53,7 @@ for (let i=0; i<dropdowns.length; i++)
 		let panel = this.nextElementSibling;
 		if (panel.style.maxHeight)
 		{
+			if (this.id === 'xround_bottom') this.id = 'round_bottom';
 			panel.style.maxHeight = null;
 		}
 		else
@@ -65,6 +66,9 @@ for (let i=0; i<dropdowns.length; i++)
 
 			// minimum height of 75 px
 			panel.style.maxHeight = Math.max(panel.scrollHeight + charLength, 75) + 'px';
+
+			// don't smooth off bottom option when description open
+			if (this.id === 'round_bottom') this.id = 'xround_bottom';
 		}
 	});
 }
