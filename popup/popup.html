@@ -9,16 +9,16 @@
 
 		<button class="dropdown" id="round_top">Show Hours on Profile</button>
 		<div class="description">
-			<h3>Show how many hours someone has spent watching/reading next to Days on their Profile</h3>
+			<h3>Displays total Anime and Manga hours next to the "Days" stat on user profiles</h3>
 			<label class="switch">
 				<input type="checkbox" id="hoursSwitch">
 				<span class="slider round"></span>
 			</label>
 		</div>
 
-		<button class="dropdown">View Percentage for Category</button>
+		<button class="dropdown">Show Category Percentage Tooltips</button>
 		<div class="description">
-			<h3>Show the percent a category makes up of the total entries. Hover the number in category to reveal percent</h3>
+			<h3>Hover over any status count (e.g., Completed, Watching) on a profile to see its percentage of total entries</h3>
 			<label class="switch">
 				<input type="checkbox" id="categorySwitch">
 				<span class="slider round"></span>
@@ -27,7 +27,7 @@
 
 		<button class="dropdown">View Local Time for Broadcasts</button>
 		<div class="description">
-			<h3>See the broadcasting time for any Anime in your local time in the Information Panel</h3>
+			<h3>See the broadcasting time for any Anime in your local time in the Information Panel (hover for original JST time)</h3>
 			<label class="switch">
 				<input type="checkbox" id="timeSwitch">
 				<span class="slider round"></span>
@@ -36,24 +36,42 @@
 
 		<button class="dropdown">View Watch Time Length</button>
 		<div class="description">
-			<h3>View how long it will take to finish an anime. Watch length will be besides the episode counter on it's page</h3>
+			<h3>View how long it will take to finish an anime. Watch length will be besides the episode counter on Anime pages</h3>
 			<label class="switch">
 				<input type="checkbox" id="watchSwitch">
 				<span class="slider round"></span>
 			</label>
 		</div>
 
-		<button class="dropdown" id="round_bottom">Show Hours In History</button>
+		<button class="dropdown">Show Watch Time in History</button>
 		<div class="description">
-			<h3>View how many hours someone has spent watching/reading in their history</h3>
+			<h3>Displays the estimated time spent watching or reading next to each day in a user's history</h3>
 			<label class="switch">
 				<input type="checkbox" id="showHistoryHours">
 				<span class="slider round"></span>
 			</label>
 		</div>
 
+		<button class="dropdown">Show Account Age in Years</button>
+		<div class="description">
+			<h3>Displays how many years ago a user created their account next to their join date</h3>
+			<label class="switch">
+				<input type="checkbox" id="showAccountAge">
+				<span class="slider round"></span>
+			</label>
+		</div>
+
+		<button class="dropdown" id="round_bottom">Show Airing Run Duration</button>
+		<div class="description">
+			<h3>See how long an anime has been airing/aired next it's Aired date in the Information Panel</h3>
+			<label class="switch">
+				<input type="checkbox" id="showAiringDuration">
+				<span class="slider round"></span>
+			</label>
+		</div>
+
 		<div class="footer">
-			<div class="button" id="refresh">Apply Changes</div>
+			<div class="button" id="refresh">Apply & Reload</div>
 			<div class="footerVersion">
 				<p id="versionText" style="margin-top: 10px; margin-right: 10px;"></p>
 				<a href="https://github.com/Aethese/MAL-Pal/" target="_blank"><img src="../icons/github-logo.png" style="width: 24px; height: 24px;"></a>

@@ -54,7 +54,7 @@ create () {
 	# copy all, and ONLY, contents within new_folder
 	cd "$new_folder"
 	zip -r "../MAL Pal Build.zip" . # make zip file outside of new_folder
-	cd $current_dir
+	cd "$current_dir"
 
 	echo "Created new ZIP File called 'MAL PAL Build.zip'"
 	echo

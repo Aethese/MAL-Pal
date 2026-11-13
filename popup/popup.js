@@ -3,6 +3,8 @@ const categorySwitch = document.getElementById('categorySwitch');
 const timeSwitch = document.getElementById('timeSwitch');
 const watchSwitch = document.getElementById('watchSwitch');
 const historyHourSwitch = document.getElementById('showHistoryHours');
+const accountAgeSwitch = document.getElementById('showAccountAge');
+const airingDurationSwitch = document.getElementById('showAiringDuration');
 
 const refreshBtn = document.getElementById('refresh');
 const versionText = document.getElementById('versionText');
@@ -35,6 +37,12 @@ chrome.storage.local.get(['showWatchLength'], function(result) {
 chrome.storage.local.get(['showHoursInHistory'], function(result) {
 	historyHourSwitch.checked = result.showHoursInHistory;
 });
+chrome.storage.local.get(['showAccountAgeinYears'], function(result) {
+	accountAgeSwitch.checked = result.showAccountAgeinYears;
+});
+chrome.storage.local.get(['showAiringDuration'], function(result) {
+	airingDurationSwitch.checked = result.showAiringDuration;
+});
 
 
 /* Handle dropdown menu animation */
@@ -49,6 +57,7 @@ for (let i=0; i<dropdowns.length; i++)
 		let panel = this.nextElementSibling;
 		if (panel.style.maxHeight)
 		{
+			if (this.id === 'xround_bottom') this.id = 'round_bottom';
 			panel.style.maxHeight = null;
 		}
 		else
@@ -61,6 +70,9 @@ for (let i=0; i<dropdowns.length; i++)
 
 			// minimum height of 75 px
 			panel.style.maxHeight = Math.max(panel.scrollHeight + charLength, 75) + 'px';
+
+			// don't smooth off bottom option when description open
+			if (this.id === 'round_bottom') this.id = 'xround_bottom';
 		}
 	});
 }
@@ -99,6 +111,20 @@ historyHourSwitch.addEventListener('change', function() {
 	let timeChecked = this.checked;
 	chrome.storage.local.set({'showHoursInHistory': timeChecked}, function() {
 		console.log(`[MAL Pal: Popup] Updated settings to ${timeChecked} for hours in history`);
+	});
+});
+
+accountAgeSwitch.addEventListener('change', function() {
+	let timeChecked = this.checked;
+	chrome.storage.local.set({'showAccountAgeinYears': timeChecked}, function() {
+		console.log(`[MAL Pal: Popup] Updated settings to ${timeChecked} for show account age with years`);
+	});
+});
+
+airingDurationSwitch.addEventListener('change', function() {
+	let timeChecked = this.checked;
+	chrome.storage.local.set({'showAiringDuration': timeChecked}, function() {
+		console.log(`[MAL Pal: Popup] Updated settings to ${timeChecked} for showing airing duration`);
 	});
 });
 
