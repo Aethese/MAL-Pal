@@ -171,10 +171,10 @@ function addAiringDuration()
 {
 	// get the "Aired" info, do date math between the two, then
 	// return that data in months, or years if long enough
-
+	////
 	// if actively airing, the Aired dates will be: Jan 01, 1900 to ?
 	// in the case if actively airing, instead of ? just use today's date
-
+	////
 	// Test Anime:
 	//   One Piece, Saiki K, Monster, Fullmetal Alchemist (51 ep), Afro Samurai, Baki Hanma 2nd Season
 

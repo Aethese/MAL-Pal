@@ -24,6 +24,10 @@
 		{
 			"js": ["scripts/pages.js", "scripts/utilities.js"],
 			"matches": ["https://myanimelist.net/anime/*", "https://myanimelist.net/anime.php?id=*"]
+		},
+		{
+			"js": ["scripts/update_banner.js"],
+			"matches": ["https://myanimelist.net/*"]
 		}
 	],
 	"browser_specific_settings": { 
