@@ -162,7 +162,7 @@ function addWatchLength()
 	}
 	else
 	{
-		console.log('[MAL Pal: Pages] Couldn\'t find duration, assuming there is none');
+		console.log('[MAL Pal: Pages] Couldn\'t find duration for series, assuming there is none');
 	}
 }
 
@@ -187,6 +187,12 @@ function addAiringDuration()
 
 	const fullAiringData = airingEl[1].childNodes[2].nodeValue.trim();
 	const airingDataSplit = fullAiringData.split(' to ');
+
+	if (airingDataSplit.length === 1)
+	{
+		console.log('[MAL Pal: Pages] Aired on only one date, so not calculating airing duration');
+		return;
+	}
 
 	let airingToDate;
 	if (airingDataSplit[1] === '?') airingToDate = new Date();
