@@ -8,6 +8,7 @@
 */
 
 const manifestVersion = chrome.runtime.getManifest().version;
+const latestUpdatesLink = 'https://aethese.com/malpal/latest-updates.html';
 
 
 function displayBanner()
@@ -50,7 +51,7 @@ function displayBanner()
 
 	// Update Text
 	let updateText = document.createElement('a');
-	updateText.setAttribute('href', 'https://aethese.com/');
+	updateText.setAttribute('href', latestUpdatesLink);
 	updateText.setAttribute('target', '_blank');
 	updateText.setAttribute('rel', 'noopener noreferrer');
 	updateText.classList.add('di-b', 'pr12', 'pl12', 'MAL-Pal-generated');
