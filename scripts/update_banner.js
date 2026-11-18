@@ -85,9 +85,18 @@ function checkVersion(localVersion)
 
 	if (localVersion === undefined) // fresh install
 	{
+		// TEMPORARY holdover for new version. to be deleted after v1.1.0 release
+		if (manifestVersion === '1.1.0')
+		{
+			console.log('[MAL Pal: Update Banner] Holdover v1.1.0 detected. Displaying banner');
+			displayBanner();
+			return;
+		}
+
 		chrome.storage.local.set({'latestUpdatedVersion': manifestVersion}, function() {
 			console.log(`[MAL Pal: Update Banner] Fresh install detected, updating local version to ${manifestVersion}`);
 		});
+
 		return;
 	}
 	else if (localVersion === manifestVersion) return; // versions match, don't show shi
